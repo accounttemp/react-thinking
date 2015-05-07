@@ -14,7 +14,9 @@
 var ProductCategoryRow = React.createClass({
     render: function() {
         return (
-
+            <tr>
+                <th colSpan="2">ProductCategoryRow</th>
+            </tr>
         );
     }
 });
@@ -23,6 +25,8 @@ var ProductRow = React.createClass({
     render: function() {
         return (
                 <tr>
+                    <td>ProductRow (name)</td>
+                    <td>ProductRow (price)</td>
                 </tr>
         );
     }
@@ -32,6 +36,10 @@ var ProductTable = React.createClass({
     render: function() {
         return (
                 <table>
+                    ****PRODUCTTABLE****
+                    <ProductCategoryRow />
+                    <ProductRow />
+                    <ProductRow />
                 </table>
         );
     }
@@ -41,7 +49,9 @@ var SearchBar = React.createClass({
     render: function() {
         return (
             <form>
+                <input type="text" placeholder="cerca.." ref="filterTextInput" />
 
+                <input type="checkbox" ref="inStockOnlyInput" /> in stock only
             </form>
         );
     }
@@ -50,8 +60,10 @@ var SearchBar = React.createClass({
 var FilterableProductTable = React.createClass({
     render: function() {
         return (
-                <div>
-                </div>
+            <div>
+                <ProductTable />
+                <SearchBar />
+            </div>
         );
     }
 });
