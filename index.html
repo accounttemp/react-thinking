@@ -25,8 +25,8 @@ var ProductRow = React.createClass({
     render: function() {
         return (
                 <tr>
-                    <td>ProductRow (name)</td>
-                    <td>ProductRow (price)</td>
+                    <td>{this.props.name}</td>
+                    <td>{this.props.price}</td>
                 </tr>
         );
     }
@@ -34,12 +34,17 @@ var ProductRow = React.createClass({
 
 var ProductTable = React.createClass({
     render: function() {
+        var rows = [];
+        this.props.products.forEach(function(product){
+            rows.push(<ProductRow name={product.name} price={product.name}/>)
+        });
         return (
                 <table>
-                    ****PRODUCTTABLE****
-                    <ProductCategoryRow />
-                    <ProductRow />
-                    <ProductRow />
+                    <tr>
+                        <th>Name</th>
+                        <th>Price</th>
+                    </tr>
+                    {rows}
                 </table>
         );
     }
@@ -50,7 +55,6 @@ var SearchBar = React.createClass({
         return (
             <form>
                 <input type="text" placeholder="cerca.." ref="filterTextInput" />
-
                 <input type="checkbox" ref="inStockOnlyInput" /> in stock only
             </form>
         );
@@ -61,7 +65,7 @@ var FilterableProductTable = React.createClass({
     render: function() {
         return (
             <div>
-                <ProductTable />
+                <ProductTable products={this.props.products}/>
                 <SearchBar />
             </div>
         );
